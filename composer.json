@@ -1,0 +1,41 @@
+{
+    "name": "eusonlito/laravel-database-cache",
+    "description": "Cache Database Query results on Laravel Query Builder or Eloquent",
+    "keywords": ["sql", "database", "cache", "laravel", "eloquent"],
+    "homepage": "https://github.com/eusonlito/laravel-database-cache",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Lito",
+            "email": "lito@eordes.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "illuminate/database": "8.*",
+        "illuminate/support": "8.*"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.19",
+        "phpunit/phpunit": "^9.5.8",
+        "mockery/mockery": "^1.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Eusonlito\\DatabaseCache\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
