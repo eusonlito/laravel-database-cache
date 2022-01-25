@@ -2,7 +2,6 @@
 
 namespace Tests;
 
-use Illuminate\Contracts\Cache\LockTimeoutException;
 use Illuminate\Contracts\Cache\Repository;
 use Illuminate\Support\Facades\Cache;
 use Orchestra\Testbench\TestCase;
@@ -10,11 +9,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Orchestra\Testbench\Concerns\WithLaravelMigrations;
-use Eusonlito\DatabaseCache\CacheBuilder;
-use Eusonlito\CacheBuilder\ServiceProvider;
-use RuntimeException;
 
-class CacheBuilderTest extends TestCase
+class DatabaseCacheTest extends TestCase
 {
     use WithLaravelMigrations;
     use WithFaker;

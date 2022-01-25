@@ -14,7 +14,7 @@ Articles::latest('published_at')->take(10)->cache()->get();
 You can install the package via composer:
 
 ```bash
-composer require eusonlito/database-cache
+composer require eusonlito/laravel-database-cache
 
 php artisan vendor:publish --tag=eusonlito-database-cache
 ```
