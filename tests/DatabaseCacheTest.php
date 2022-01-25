@@ -49,12 +49,16 @@ class DatabaseCacheTest extends TestCase
         User::destroy($id);
 
         static::assertEquals($id, User::inRandomOrder()->cache(30, 'customKey')->value('id'));
+        static::assertEquals($id, $this->cache(['database', 'database|users'])->get('customKey')[0]->id);
 
-        $id = User::inRandomOrder()->cache(30, 'differentKey')->value('id');
+        $id = User::latest()->cache(30, 'differentKey')->value('id');
 
         User::destroy($id);
 
-        static::assertNotEquals($id, User::inRandomOrder()->cache(30, 'customKey')->value('id'));
+        static::assertNotEquals($id, User::latest()->cache(0, 'differentKey')->value('id'));
+
+        static::assertEquals($id, User::latest()->cache(30, 'differentKey')->value('id'));
+        static::assertEquals($id, $this->cache(['database', 'database|users'])->get('differentKey')[0]->id);
     }
 
     public function test_query_returns_saved_null_result(): void
@@ -95,8 +99,8 @@ class DatabaseCacheTest extends TestCase
         );
     }
 
-    protected function cache(): Repository
+    protected function cache(array $tags = ['database']): Repository
     {
-        return Cache::tags(['database']);
+        return Cache::tags($tags);
     }
 }

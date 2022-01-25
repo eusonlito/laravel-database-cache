@@ -34,6 +34,22 @@ class User extends Model
     use CacheBuilderTrait;
 ```
 
+## Configuration
+
+Default configuration values are set in `config/database-cache.php` file:
+
+```php
+return [
+    'enabled' => (bool)env('DATABASE_CACHE_ENABLED', env('CACHE_ENABLED', true)),
+    'driver' => env('DATABASE_CACHE_DRIVER', env('CACHE_DRIVER', 'redis')),
+    'ttl' => (int)env('DATABASE_CACHE_TTL', env('CACHE_TTL', 3600)),
+    'tag' => env('DATABASE_CACHE_TAG', 'database'),
+    'prefix' => env('DATABASE_CACHE_PREFIX', 'database|'),
+];
+```
+
+Also you can set custom `ttl` and `key` on every `->cache(:ttl, :key)` call.
+
 ## Usage
 
 Just use the `cache()` method to remember a Query result **before the execution**. That's it. The method automatically remembers the result for 3600 seconds.
