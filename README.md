@@ -36,6 +36,16 @@ class User extends Model
 
 ## Configuration
 
+Add this variables to `.env` file:
+
+```
+DATABASE_CACHE_ENABLED=true
+DATABASE_CACHE_DRIVER=redis
+DATABASE_CACHE_TTL=3600
+DATABASE_CACHE_TAG=database
+DATABASE_CACHE_PREFIX=database|
+```
+
 Default configuration values are set in `config/database-cache.php` file:
 
 ```php
