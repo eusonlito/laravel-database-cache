@@ -35,7 +35,7 @@ class CacheBuilder extends Builder
      */
     public function cache(int|DateTimeInterface|DateInterval|null $ttl = null, ?string $key = null): self
     {
-        if (empty($this->cache) || ($ttl !== null)) {
+        if (($this->cache === null) || ($ttl !== null)) {
             $this->cache = new CacheService($this, $ttl, $key);
         }
 
