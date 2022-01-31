@@ -17,7 +17,7 @@ class CacheBuilder extends Builder
     /**
      * @var int|\DateTimeInterface|\DateInterval|null
      */
-    protected int|DateTimeInterface|DateInterval|null $cacheTTL;
+    protected int|DateTimeInterface|DateInterval|null $cacheTTL = 0;
 
     /**
      * @var ?string
@@ -40,7 +40,7 @@ class CacheBuilder extends Builder
      */
     public function cache(int|DateTimeInterface|DateInterval|null $ttl = null, ?string $key = null): self
     {
-        $this->cacheTTL = $ttl;
+        $this->cacheTTL = $ttl ?? $this->cacheConfig('ttl');
         $this->cacheKey = $key;
 
         return $this;
@@ -115,7 +115,7 @@ class CacheBuilder extends Builder
      */
     protected function cacheTTL(): int|DateTimeInterface|DateInterval|null
     {
-        return $this->cacheTTL ?? $this->cacheConfig('ttl');
+        return $this->cacheTTL;
     }
 
     /**
