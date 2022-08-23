@@ -6,8 +6,8 @@ Articles::latest('published_at')->take(10)->cache()->get();
 
 ## Requirements
 
-* PHP 8.0
-* Laravel 8.x
+* PHP 8.x
+* Laravel 8.x / 9.x
 
 ## Installation
 
