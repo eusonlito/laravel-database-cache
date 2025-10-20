@@ -86,7 +86,7 @@ Article::latest('published_at')->take(10)->cache(now()->addHour())->get();
 
 ### Custom Cache Key
 
-The auto-generated cache key is an BASE64-MD5 hash of the SQL query and its bindings, which avoids any collision with other queries while keeping the cache key short. 
+The auto-generated cache key is an BASE64-MD5 hash of the SQL query and its bindings, which avoids any collision with other queries while keeping the cache key short.
 
 If you are using the default config, this cache will be stored inside `['database', 'database|articles']` tags with the key `latest_articles`.
 
@@ -137,6 +137,21 @@ Cache::tags('database')->flush();
 
 // Flush only users table cache
 Cache::tags('database|users')->flush();
+```
+
+### Artisan command
+
+You can also flush caches using the artisan command:
+
+```bash
+# Flush all database cache
+php artisan database-cache:clear
+
+# Flush only users table cache
+php artisan database-cache:clear users
+
+# Flush only articles table cache
+php artisan database-cache:clear articles
 ```
 
 ## License

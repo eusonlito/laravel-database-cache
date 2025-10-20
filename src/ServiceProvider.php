@@ -2,6 +2,7 @@
 
 namespace Eusonlito\DatabaseCache;
 
+use Eusonlito\DatabaseCache\Console\CacheClearCommand;
 use Illuminate\Support\ServiceProvider as ServiceProviderVendor;
 
 class ServiceProvider extends ServiceProviderVendor
@@ -17,6 +18,7 @@ class ServiceProvider extends ServiceProviderVendor
     public function boot(): void
     {
         $this->configPublish();
+        $this->commandsRegister();
     }
 
     /**
@@ -27,5 +29,17 @@ class ServiceProvider extends ServiceProviderVendor
         $this->publishes([
             dirname(__DIR__).'/config/database-cache.php' => config_path('database-cache.php'),
         ], 'eusonlito-database-cache');
+    }
+
+    /**
+     * @return void
+     */
+    protected function commandsRegister(): void
+    {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                CacheClearCommand::class,
+            ]);
+        }
     }
 }
